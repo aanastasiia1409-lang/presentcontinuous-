@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Right Now! Present Continuous</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f0ff;--ink:#1d1840;--card:#fff;--line:#d9d2fb;--brand:#5b3df5;--on-brand:#fff;--accent:#ff9f1c;--ok:#12805c;--bad:#c62f4b;--soft:#ece8ff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0c24;--ink:#ece9ff;--card:#1a1640;--line:#3a3275;--brand:#a594ff;--on-brand:#14103a;--accent:#ffb84d;--ok:#4cd9a0;--bad:#ff7a93;--soft:#241f55;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f0c24;--ink:#ece9ff;--card:#1a1640;--line:#3a3275;--brand:#a594ff;--on-brand:#14103a;--accent:#ffb84d;--ok:#4cd9a0;--bad:#ff7a93;--soft:#241f55;color-scheme:dark}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.55 Nunito,system-ui,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 64px}
+h1,h2,h3,.btn{font-family:Fredoka,"Trebuchet MS",sans-serif}
+h1{font-size:clamp(2.2rem,8vw,3.4rem);line-height:1.05;margin:0 0 8px}
+h2{font-size:1.6rem;margin:0 0 6px}
+.hero{display:flex;gap:20px;align-items:center;padding:20px 0}
+.portal{flex:none;width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--brand),var(--accent),var(--brand));display:grid;place-items:center;animation:spin 6s linear infinite}
+.portal span{width:68px;height:68px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font:700 1.5rem Fredoka,sans-serif;animation:spin 6s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.portal,.portal span{animation:none}}
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:20px;margin:18px 0}
+.rule{border-color:var(--brand)}
+.rule ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.rule li{background:var(--soft);border-radius:12px;padding:10px 14px}
+b.ed{color:var(--brand);font-weight:700}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media (max-width:520px){.fields{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}}
+label{display:grid;gap:4px;font-weight:700;font-size:.95rem}
+input[type=text]{font:inherit;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+input[type=text]:focus-visible,.btn:focus-visible,.opt:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn{font-size:1.1rem;font-weight:700;border:0;border-radius:999px;padding:12px 24px;background:var(--brand);color:var(--on-brand);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.alt{background:var(--soft);color:var(--ink);border:2px solid var(--line)}
+.q{padding:14px 0;border-top:2px dashed var(--line)}
+.q:first-of-type{border-top:0}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center}
+.opt{font:700 1rem Nunito,sans-serif;padding:8px 16px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--brand)}
+.opt.ok,.q.ok{border-color:var(--ok)}.opt.ok{background:var(--ok);color:var(--card)}
+.opt.bad{border-color:var(--bad);background:var(--bad);color:var(--card)}
+.msg{font-weight:700;margin-top:6px;min-height:1.4em}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+.ed-btn{width:56px;height:56px;border-radius:50%;border:0;background:var(--accent);color:#1d1840;font:700 1.1rem Fredoka,sans-serif;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.25)}
+.ed-btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.verb{font:700 1.3rem Fredoka,sans-serif}
+.score{font:700 .95rem Nunito,sans-serif;background:var(--soft);padding:2px 12px;border-radius:999px;float:right}
+textarea{width:100%;min-height:150px;font:14px/1.4 ui-monospace,monospace;padding:10px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.big{font:700 2.4rem Fredoka,sans-serif;color:var(--brand)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+  <div class="portal" aria-hidden="true"><span>-ing</span></div>
+  <div>
+    <h1>Right Now!</h1>
+    <p style="margin:0">Look! What is happening <b class="ed">right now</b>?</p>
+  </div>
+</section>
+
+<section class="card" id="login">
+  <h2>Who is playing?</h2>
+  <div class="fields">
+    <label>First name<input type="text" id="fn" autocomplete="given-name"></label>
+    <label>Last name<input type="text" id="ln" autocomplete="family-name"></label>
+  </div>
+  <button class="btn" id="go">Let's play</button>
+  <div class="msg bad" id="loginMsg"></div>
+</section>
+
+<section class="card rule">
+  <h2>The rule: Present Continuous</h2>
+  <p>We use Present Continuous for actions that are happening <b class="ed">now</b>. Form: <b class="ed">am / is / are + verb-ing</b>.</p>
+  <ul>
+    <li>I <b class="ed">am</b> play<b class="ed">ing</b>. She <b class="ed">is</b> read<b class="ed">ing</b>. They <b class="ed">are</b> swim<b class="ed">ming</b>.</li>
+    <li>Most verbs: add <b class="ed">-ing</b>. play → play<b class="ed">ing</b></li>
+    <li>Verbs ending in -e: drop the e. dance → danc<b class="ed">ing</b>, make → mak<b class="ed">ing</b></li>
+    <li>Short verbs (consonant, vowel, consonant): double the last letter. run → run<b class="ed">ning</b>, sit → sit<b class="ed">ting</b></li>
+    <li>Negative: add <b class="ed">not</b>. He is not (isn't) sleeping.</li>
+    <li>Question: put am / is / are first. <b class="ed">Are</b> you eating?</li>
+  </ul>
+  <div style="margin:14px 0 0;background:var(--soft);border-radius:14px;padding:12px 14px"><div style="font:700 1.2rem Fredoka,sans-serif">🥪 «Грамматический Бутерброд»</div><div style="margin-top:6px">Запомни это время как бутерброд: <b class="ed">am / is / are</b> (верхний хлеб) + <b>глагол</b> (начинка) + <b class="ed">-ing</b> (нижний хлеб).</div><div style="margin-top:6px">She <b class="ed">is</b> eat<b class="ed">ing</b> = 🍞 is + eat + ing 🍞</div></div>
+  <p style="margin:12px 0 0">Time words: <i>now, right now, at the moment, Look! Listen!</i></p>
+</section>
+
+<div id="games" hidden>
+  <section class="card"><h2>Game 1: Pick the word <span class="score" id="s1">0/6</span></h2><p>Choose the correct word for each sentence.</p><div id="g1"></div></section>
+  <section class="card"><h2>Game 2: The -ING button <span class="score" id="s2">0/6</span></h2><p>Type the -ing form of the verb. Then press the button!</p><div id="g2"></div></section>
+  <section class="card"><h2>Game 3: Right or wrong? <span class="score" id="s3">0/6</span></h2><p>Is the sentence correct? Decide!</p><div id="g3"></div></section>
+
+  <section class="card" id="result">
+    <button class="btn" id="finish">Finish and see my result</button>
+    <div id="out" hidden>
+      <p class="big" id="total"></p>
+      <p>Send your result to your teacher:</p>
+      <div class="row">
+        <a class="btn" id="mail" href="#">Send by email</a>
+        <button class="btn alt" id="copy">Copy result</button>
+      </div>
+      <p class="msg" id="copyMsg"></p>
+      <textarea id="txt" readonly aria-label="Result text"></textarea>
+      <p style="font-size:.9rem">If the email does not open, press "Copy result" and send the text to akateva_04@inbox.ru.</p>
+    </div>
+  </section>
+</div>
+</main>
+<script>
+const TO="akateva_04@inbox.ru";
+const G1=[["Look! The cat ___ on the sofa.",["sleeps","is sleeping","are sleeping"],1],
+["I ___ my homework now.",["am doing","is doing","do"],0],
+["They ___ football at the moment.",["is playing","plays","are playing"],2],
+["She ___ a letter right now.",["write","is writting","is writing"],2],
+["We ___ to music.",["are listening","is listening","listening"],0],
+["He ___ a cake. It smells great!",["bakeing","is baking","are baking"],1]];
+const G2=[["run","running"],["make","making"],["swim","swimming"],["play","playing"],["dance","dancing"],["sit","sitting"]];
+const G3=[["She is reading a book now.","Now"],["I am watch TV.","Then"],["They are swimming in the sea.","Now"],["He is runing in the park.","Then"],["We are eating lunch.","Now"],["The dog are sleeping.","Then"]];
+const L=t=>t==="Now"?"right":"wrong";
+const res={1:[],2:[],3:[]},wrong=[];
+const $=id=>document.getElementById(id);
+const mk=(h)=>{const d=document.createElement("div");d.className="q";d.innerHTML=h;return d};
+function done(g,i,ok,note){res[g][i]=ok?1:0;if(!ok)wrong.push(note);
+  $("s"+g).textContent=res[g].filter(x=>x===1).length+"/6"}
+
+G1.forEach((q,i)=>{const d=mk(`<div>${q[0]}</div><div class="row"></div><div class="msg"></div>`);
+  const row=d.children[1],msg=d.children[2];
+  q[1].forEach((t,k)=>{const b=document.createElement("button");b.className="opt";b.textContent=t;
+    b.onclick=()=>{row.querySelectorAll("button").forEach(x=>x.disabled=true);
+      const ok=k===q[2];b.classList.add(ok?"ok":"bad");
+      if(!ok)row.children[q[2]].classList.add("ok");
+      msg.textContent=ok?"Great!":"Oops! Correct: "+q[1][q[2]];msg.className="msg "+(ok?"ok":"bad");
+      done(1,i,ok,`Game 1: "${q[0]}" - answered "${t}", correct "${q[1][q[2]]}"`)};
+    row.appendChild(b)});
+  $("g1").appendChild(d)});
+
+G2.forEach((q,i)=>{const d=mk(`<div class="row"><span class="verb">${q[0]} →</span><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="-ing form of ${q[0]}" style="max-width:180px"><button class="ed-btn" type="button" aria-label="Check">-ING</button></div><div class="msg"></div>`);
+  const inp=d.querySelector("input"),btn=d.querySelector("button"),msg=d.querySelector(".msg");
+  const check=()=>{if(inp.disabled||!inp.value.trim())return;
+    const v=inp.value.trim().toLowerCase(),ok=v===q[1];inp.disabled=btn.disabled=true;
+    msg.textContent=ok?"Yes! "+q[1]:"Not quite. Correct: "+q[1];msg.className="msg "+(ok?"ok":"bad");
+    done(2,i,ok,`Game 2: ${q[0]} - answered "${v}", correct "${q[1]}"`)};
+  btn.onclick=check;inp.onkeydown=e=>{if(e.key==="Enter")check()};
+  $("g2").appendChild(d)});
+
+G3.forEach((q,i)=>{const d=mk(`<div>${q[0]}</div><div class="row"></div><div class="msg"></div>`);
+  const row=d.children[1],msg=d.children[2];
+  ["Now","Then"].forEach(t=>{const b=document.createElement("button");b.className="opt";b.textContent=t==="Now"?"Right ✓":"Wrong ✗";
+    b.onclick=()=>{row.querySelectorAll("button").forEach(x=>x.disabled=true);
+      const ok=t===q[1];b.classList.add(ok?"ok":"bad");
+      msg.textContent=ok?"Good eye!":"Oops! The sentence is "+L(q[1])+".";msg.className="msg "+(ok?"ok":"bad");
+      done(3,i,ok,`Game 3: "${q[0]}" - answered ${L(t)}, correct ${L(q[1])}`)};
+    row.appendChild(b)});
+  $("g3").appendChild(d)});
+
+let name="";
+$("go").onclick=()=>{const f=$("fn").value.trim(),l=$("ln").value.trim();
+  if(!f||!l){$("loginMsg").textContent="Please write your first name and last name.";return}
+  name=f+" "+l;$("login").innerHTML=`<h2>Welcome, ${name.replace(/[<>&]/g,"")}!</h2><p style="margin:0">Read the rule, then play the games below.</p>`;
+  $("games").hidden=false;$("games").scrollIntoView({behavior:"smooth"})};
+
+$("finish").onclick=()=>{
+  const s=g=>res[g].filter(x=>x===1).length,answered=res[1].filter(x=>x!==undefined).length+res[2].filter(x=>x!==undefined).length+res[3].filter(x=>x!==undefined).length;
+  const total=s(1)+s(2)+s(3);
+  const t=`Present Continuous (am/is/are + -ing)\nStudent: ${name}\nDate: ${new Date().toLocaleString("en-GB")}\n\nTotal: ${total}/18 (answered ${answered}/18)\nGame 1 Pick the word: ${s(1)}/6\nGame 2 The -ING button: ${s(2)}/6\nGame 3 Right or wrong: ${s(3)}/6\n\nMistakes:\n`+(wrong.length?wrong.join("\n"):"none");
+  $("total").textContent=`${name}: ${total}/18`;$("txt").value=t;
+  $("mail").href="mailto:"+TO+"?subject="+encodeURIComponent("Present Continuous result: "+name)+"&body="+encodeURIComponent(t);
+  $("out").hidden=false;$("finish").hidden=true;$("out").scrollIntoView({behavior:"smooth"})};
+$("copy").onclick=async()=>{const el=$("txt");
+  try{await navigator.clipboard.writeText(el.value);$("copyMsg").textContent="Copied!"}
+  catch(e){el.select();$("copyMsg").textContent="Select the text and copy it."}};
+</script>
+</body>
+</html>
