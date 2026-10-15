@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Right Now! Present Continuous</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3f0ff;--ink:#1d1840;--card:#fff;--line:#d9d2fb;--brand:#5b3df5;--on-brand:#fff;--accent:#ff9f1c;--ok:#12805c;--bad:#c62f4b;--soft:#ece8ff;color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0c24;--ink:#ece9ff;--card:#1a1640;--line:#3a3275;--brand:#a594ff;--on-brand:#14103a;--accent:#ffb84d;--ok:#4cd9a0;--bad:#ff7a93;--soft:#241f55;color-scheme:dark}}
@@ -97,7 +95,8 @@ textarea{width:100%;min-height:150px;font:14px/1.4 ui-monospace,monospace;paddin
     <button class="btn" id="finish">Finish and see my result</button>
     <div id="out" hidden>
       <p class="big" id="total"></p>
-      <p>Send your result to your teacher:</p>
+      <p class="msg" id="sendMsg" role="status"></p>
+      <p>Your teacher gets the result automatically. If sending failed, use a button:</p>
       <div class="row">
         <a class="btn" id="mail" href="#">Send by email</a>
         <button class="btn alt" id="copy">Copy result</button>
@@ -111,6 +110,8 @@ textarea{width:100%;min-height:150px;font:14px/1.4 ui-monospace,monospace;paddin
 </main>
 <script>
 const TO="akateva_04@inbox.ru";
+// Paste your Formspree address here, e.g. https://formspree.io/f/abcdwxyz
+const FORM_URL="https://formspree.io/f/mljgobal";
 const G1=[["Look! The cat ___ on the sofa.",["sleeps","is sleeping","are sleeping"],1],
 ["I ___ my homework now.",["am doing","is doing","do"],0],
 ["They ___ football at the moment.",["is playing","plays","are playing"],2],
@@ -168,7 +169,15 @@ $("finish").onclick=()=>{
   const t=`Present Continuous (am/is/are + -ing)\nStudent: ${name}\nDate: ${new Date().toLocaleString("en-GB")}\n\nTotal: ${total}/18 (answered ${answered}/18)\nGame 1 Pick the word: ${s(1)}/6\nGame 2 The -ING button: ${s(2)}/6\nGame 3 Right or wrong: ${s(3)}/6\n\nMistakes:\n`+(wrong.length?wrong.join("\n"):"none");
   $("total").textContent=`${name}: ${total}/18`;$("txt").value=t;
   $("mail").href="mailto:"+TO+"?subject="+encodeURIComponent("Present Continuous result: "+name)+"&body="+encodeURIComponent(t);
-  $("out").hidden=false;$("finish").hidden=true;$("out").scrollIntoView({behavior:"smooth"})};
+  $("out").hidden=false;$("finish").hidden=true;$("out").scrollIntoView({behavior:"smooth"});
+  autoSend(t,total)};
+async function autoSend(t,total){const m=$("sendMsg");
+  if(!FORM_URL.startsWith("https://formspree.io/")){m.textContent="Automatic sending is not set up. Use a button below.";m.className="msg bad";return}
+  m.textContent="Sending to your teacher...";m.className="msg";
+  try{const r=await fetch(FORM_URL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({_subject:document.title+" - "+name,student:name,score:total+"/18",message:t})});
+    if(!r.ok)throw 0;m.textContent="Sent to your teacher!";m.className="msg ok"}
+  catch(e){m.textContent="Could not send. Please use a button below.";m.className="msg bad"}}
 $("copy").onclick=async()=>{const el=$("txt");
   try{await navigator.clipboard.writeText(el.value);$("copyMsg").textContent="Copied!"}
   catch(e){el.select();$("copyMsg").textContent="Select the text and copy it."}};
